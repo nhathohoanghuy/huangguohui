@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Thiên Uy - Fanpage Home</title>
+    <!-- Thêm icon từ FontAwesome để làm các biểu tượng giống Facebook -->
+    <link rel="stylesheet" href="https://cloudflare.com">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f0f2f5;
+            color: #1c1e21;
+        }
+
+        /* Vùng Header & Bìa */
+        .profile-container {
+            background: #fff;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            max-width: 1095px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .cover-photo {
+            width: 100%;
+            height: 350px;
+            background: linear-gradient(135deg, #1845ad, #23a6d5);
+            background-size: cover;
+            background-position: center;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+            position: relative;
+        }
+
+        /* Thông tin Page */
+        .profile-header-info {
+            padding: 0 32px 16px 32px;
+            display: flex;
+            align-items: flex-end;
+            margin-top: -30px;
+            border-bottom: 1px solid #e4e6eb;
+            position: relative;
+            z-index: 2;
+        }
+
+        .avatar-container {
+            width: 168px;
+            height: 168px;
+            border-radius: 50%;
+            border: 5px solid #fff;
+            overflow: hidden;
+            background: #ccc;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .avatar-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .page-details {
+            margin-left: 24px;
+            flex-grow: 1;
+            padding-bottom: 16px;
+        }
+
+        .page-name {
+            font-size: 32px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .verified-badge {
+            color: #1877f2;
+            font-size: 20px;
+        }
+
+        .page-likes {
+            font-size: 15px;
+            color: #65676b;
+            margin-top: 4px;
+        }
+
+        /* Nút hành động */
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+            padding-bottom: 16px;
+        }
+
+        .btn {
+            padding: 0 12px;
+            height: 36px;
+            border-radius: 6px;
+            border: none;
+            font-weight: 6px;
+            font-size: 15px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background-color: #1877f2;
+            color: #fff;
+        }
+
+        .btn-primary:hover { background-color: #166fe5; }
+
+        .btn-secondary {
+            background-color: #e4e6eb;
+            color: #050505;
+        }
+
+        .btn-secondary:hover { background-color: #d8dadf; }
+
+        /* Menu điều hướng */
+        .page-menu {
+            display: flex;
+            list-style: none;
+            padding: 4px 32px;
+        }
+
+        .page-menu li a {
+            padding: 16px;
+            color: #65676b;
+            text-decoration: none;
+            font-weight: 6px;
+            font-size: 15px;
+            display: block;
+            border-bottom: 3px solid transparent;
+        }
+
+        .page-menu li.active a {
+            color: #1877f2;
+            border-bottom-color: #1877f2;
+        }
+
+        /* Layout thân trang */
+        .main-content {
+            max-width: 1095px;
+            margin: 16px auto;
+            display: grid;
+            grid-template-columns: 360px 1fr;
+            gap: 16px;
+            padding: 0 16px;
+        }
+
+        /* Cột trái: Giới thiệu */
+        .left-column .card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 16px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            margin-bottom: 16px;
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .intro-list {
+            list-style: none;
+        }
+
+        .intro-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-size: 15px;
+            color: #050505;
+        }
+
+        .intro-item i {
+            color: #65676b;
+            width: 20px;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        /* Cột phải: Dòng thời gian bài viết */
+        .post-card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 16px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            margin-bottom: 16px;
+        }
+
+        .post-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .post-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 10px;
+        }
+
+        .post-author-info h4 {
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .post-time {
+            font-size: 13px;
+            color: #65676b;
+        }
+
+        .post-content {
+            font-size: 15px;
+            line-height: 1.4;
+            margin-bottom: 12px;
+            white-space: pre-line;
+        }
+
+        .post-image {
+            width: calc(100% + 32px);
+            margin-left: -16px;
+            max-height: 500px;
+            object-fit: cover;
+            background: #f0f2f5;
+        }
+
+        /* Responsive di động */
+        @media (max-width: 900px) {
+            .profile-header-info {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                margin-top: -60px;
+            }
+            .page-details { margin-left: 0; margin-top: 12px; }
+            .page-name { justify-content: center; }
+            .action-buttons { justify-content: center; width: 100%; }
+            .main-content { grid-template-columns: 1fr; }
+            .cover-photo { height: 200px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Khung giao diện Profile Page -->
+    <div class="profile-container">
+        <!-- Ảnh bìa (Có thể thay URL bằng ảnh thật) -->
+        <div class="cover-photo" style="background-image: url('https://unsplash.com');"></div>
+        
+        <!-- Thông tin trang -->
+        <div class="profile-header-info">
+            <div class="avatar-container">
+                <!-- Ảnh đại diện -->
+                <img class="avatar-img" src="https://unsplash.com" alt="Avatar">
+            </div>
+            
+            <div class="page-details">
+                <div class="page-name">
+                    Master Thiên Uy 
+                    <i class="fa-solid fa-circle-check verified-badge" title="Trang đã xác minh"></i>
+                </div>
+                <div class="page-likes">102K người thích • 150K người theo dõi</div>
+            </div>
+
+            <!-- Nút tương tác -->
+            <div class="action-buttons">
+                <a href="#" class="btn btn-primary"><i class="fa-solid fa-comment"></i> Gửi tin nhắn</a>
+                <button class="btn btn-secondary" onclick="toggleFollow(this)"><i class="fa-solid fa-user-plus"></i> Theo dõi</button>
+                <button class="btn btn-secondary"><i class="fa-solid fa-ellipsis"></i></button>
+            </div>
+        </div>
+
+        <!-- Menu Tabs -->
+        <ul class="page-menu">
+            <li class="active"><a href="#">Bài viết</a></li>
+            <li><a href="#">Giới thiệu</a></li>
+            <li><a href="#">Ảnh</a></li>
+            <li><a href="#">Video</a></li>
+        </ul>
+    </div>
+
+    <!-- Layout Nội dung -->
+    <div class="main-content">
+        <!-- Cột trái: Giới thiệu -->
+        <div class="left-column">
+            <div class="card">
+                <div class="card-title">Giới thiệu</div>
+                <ul class="intro-list">
+                    <li class="intro-item">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                        <span>Chuyên gia Đào tạo & Định hình phong cách sống</span>
+                    </li>
+                    <li class="intro-item">
+                        <i class="fa-solid fa-house"></i>
+                        <span>Sống tại <b>Thành phố Hồ Chí Minh</b></span>
+                    </li>
+                    <li class="intro-item">
+                        <i class="fa-solid fa-earth-americas"></i>
+                        <span><a href="#" style="color: #1877f2; text-decoration: none;">masterthienuy.vn</a></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Cột phải: Luồng bài viết -->
+        <div class="right-column">
+            <!-- Bài viết 1 -->
+            <div class="post-card">
+                <div class="post-header">
+                    <div class="post-avatar">
+                        <img src="https://unsplash.com" width="100%" height="100%" style="object-fit: cover;">
+                    </div>
+                    <div class="post-author-info">
+                        <h4>Master Thiên Uy <i class="fa-solid fa-circle-check verified-badge" style="font-size: 12px;"></i></h4>
