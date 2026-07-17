@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grand Master Thiên Uy - Fanpage Home</title>
     <!-- Sửa link CDN FontAwesome để hiển thị icon chính xác -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cloudflare.com">
     <style>
         :root {
             --fb-blue: #1877f2;
@@ -107,6 +107,7 @@
         /* Nút hành động */
         .action-buttons {
             display: flex;
+            align-items: center;
             gap: 8px;
             padding-bottom: 16px;
         }
@@ -140,6 +141,14 @@
         }
 
         .btn-secondary:hover { background-color: var(--fb-button-secondary-hover); }
+
+        /* Khung sửa lỗi hiển thị nút Like của FB Plugin */
+        .fb-follow-plugin-box {
+            display: inline-block;
+            height: 36px;
+            vertical-align: middle;
+            overflow: hidden;
+        }
 
         /* Menu điều hướng */
         .page-menu {
@@ -263,36 +272,17 @@
             display: block;
         }
 
-        /* Thanh tương tác bài viết (Like, Comment, Share) */
-        .post-actions {
-            display: flex;
+        /* Khung chứa các plugin tương tác từ FB */
+        .fb-interactions-area {
             border-top: 1px solid var(--fb-border);
-            padding-top: 4px;
-            margin-top: 8px;
+            padding-top: 12px;
+            margin-top: 16px;
         }
 
-        .post-action-btn {
-            flex: 1;
-            height: 36px;
-            background: none;
-            border: none;
-            color: var(--fb-text-secondary);
-            font-weight: 600;
-            font-size: 14px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            border-radius: 4px;
-        }
-
-        .post-action-btn:hover {
-            background-color: var(--fb-bg);
-        }
-
-        .post-action-btn.liked {
-            color: var(--fb-blue);
+        .fb-like-row {
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--fb-border);
         }
 
         /* Responsive di động */
@@ -305,220 +295,82 @@
             }
             .page-details { margin-left: 0; margin-top: 12px; }
             .page-name { justify-content: center; }
-            .action-buttons { justify-content: center; width: 100%; }
+            .action-buttons { justify-content: center; width: 100%; flex-wrap: wrap; }
             .main-content { grid-template-columns: 1fr; }
-            .cover-photo { height: 200px; }
         }
     </style>
 </head>
 <body>
+    <!-- Cấu hình Facebook SDK kết nối hệ thống tương tác thực tế -->
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://facebook.net"></script>
 
-    <!-- Khung giao diện Profile Page -->
+    <!-- Khung chính bố cục Facebook -->
     <div class="profile-container">
-        <!-- Ảnh bìa (Đã đổi sang link ảnh mẫu cụ thể để bạn thấy được giao diện trực quan) -->
-        <div class="cover-photo" style="background-image: url('https://i.postimg.cc/L50FFq3F/470571844-973702818147073-3712426130406527825-n.jpg');"></div>
-        
-        <!-- Thông tin trang -->
+        <!-- Ảnh bìa hệ thống -->
+        <div class="cover-photo"></div>
+
+        <!-- Thông tin Header Fanpage -->
         <div class="profile-header-info">
             <div class="avatar-container">
-                <!-- Ảnh đại diện -->
-                <img class="avatar-img" src="https://i.postimg.cc/vBqWrMvR/192e8e43-02d9-41ba-a5d4-bcf9e1bb813b.jpg" alt="Avatar">
+                <!-- Thay link ảnh đại diện thực tế của bạn vào thuộc tính src -->
+                <img class="avatar-img" src="https://placeholder.com" alt="Grand Master Thiên Uy Avatar">
             </div>
             
             <div class="page-details">
                 <div class="page-name">
-                    Grand Master Thiên Uy 
-                    <i class="fa-solid fa-circle-check verified-badge" title="Trang đã xác minh"></i>
+                    Grand Master Thiên Uy
+                    <i class="fas fa-check-circle verified-badge" title="Trang đã xác minh"></i>
                 </div>
                 <div class="page-likes">102K người thích • 150K người theo dõi</div>
             </div>
 
-            <!-- Nút tương tác -->
+            <!-- Khu vực các nút bấm hành động -->
             <div class="action-buttons">
-                <a href="https://zalo.me/84908587869 " class="btn btn-primary"><i class="fa-solid fa-comment"></i> Gửi tin nhắn</a>
-                <a href="https://www.facebook.com/huangguohui.vn" class="btn btn-primary"><i class="fa-solid fa-comment"></i>Facebook</a>
-                <button class="btn btn-secondary" id="follow-btn" onclick="toggleFollow(this)"><i class="fa-solid fa-user-plus"></i> Theo dõi</button>
-                <button class="btn btn-secondary"><i class="fa-solid fa-ellipsis"></i></button>
-            </div>
-        </div>
-
-        <!-- Menu Tabs -->
-        <ul class="page-menu">
-            <li class="active"><a href="https://lizquiehuivn.forumvi.com/">Bài viết</a></li>
-            <li><a href="https://lizquiehui.github.io/">Giới thiệu</a></li>
-            <li><a href="#">Ảnh</a></li>
-            <li><a href="https://www.dailymotion.com/user/tuhuu-kbd792">Video</a></li>
-        </ul>
-    </div>
-
-    <!-- Layout Nội dung -->
-    <div class="main-content">
-        <!-- Cột trái: Giới thiệu -->
-        <div class="left-column">
-            <div class="card">
-                <div class="card-title">Giới thiệu</div>
-                <ul class="intro-list">
-                    <li class="intro-item">
-                        <i class="fa-solid fa-graduation-cap"></i>
-                        <span>Chuyên gia Đào tạo Phong thủy & Định hình phong cách sống</span>
-                    </li>
-                    <li class="intro-item">
-                        <i class="fa-solid fa-house"></i>
-                        <span>Sống tại <b>Thành phố Hải Phòng - Việt Nam</b></span>
-                    </li>
-                    <li class="intro-item">
-                        <i class="fa-solid fa-earth-americas"></i>
-                        <span><a href="http://www.masterthienuy.pro.vn/" style="color: #1877f2; text-decoration: none;">masterthienuy.pro.vn</a></span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Cột phải: Luồng bài viết -->
-        <div class="right-column">
-            <!-- Bài viết 1 -->
-            <div class="post-card">
-                <div class="post-header">
-                    <div class="post-avatar">
-                        <img src="https://picsum.photos/id/64/100/100" width="100%" height="100%" style="object-fit: cover;" alt="Mini Avatar">
-                    </div>
-                    <div class="post-author-info">
-                        <h4>Grand Master Thiên Uy <i class="fa-solid fa-circle-check verified-badge" style="font-size: 12px;"></i></h4>
-                        <div class="post-time">Vừa xong • <i class="fa-solid fa-earth-americas"></i></div>
-                    </div>
-                </div>
+                <!-- Nút nhắn tin cấu hình icon chữ F và trỏ link về Messenger Fanpage -->
+                <a href="https://m.me" class="btn btn-primary" target="_blank">
+                    <i class="fab fa-facebook-messenger" style="font-size: 16px;"></i>
+                    Gửi tin nhắn Facebook
+                </a>
                 
-               <div class="container">
-
-    <h1>Thư Ngỏ Giới Thiệu Không Gian Số</h1>
-    <h2>GRAND MASTER THIÊN UY – HUANG GUOHUI</h2>
-
-    <p>Trong bối cảnh xã hội hiện đại không ngừng phát triển, việc tìm kiếm một lối sống cân bằng, đánh thức năng lượng tích cực nội tại và kiến tạo một tư duy thành công bền vững ngày càng trở nên quan trọng. Với tâm nguyện lan tỏa những giá trị chân-thiện-mỹ và đồng hành cùng cộng đồng trên hành trình hoàn thiện bản thân, hệ thống website thương hiệu cá nhân chính thức đã được ra mắt tại địa chỉ: <a href="https://nhathohoanghuy.github.io/huangguohui/" target="_blank">https://nhathohoanghuy.github.io/huangguohui/</a>.</p>
-
-    <p>Website không chỉ là một cổng thông tin trực tuyến, mà còn được định vị như một "trạm sạc năng lượng" tinh thần, nơi kết nối và chia sẻ kiến thức chuyên sâu trong các lĩnh vực:</p>
-
-    <ul>
-        <li><strong>Tư vấn & Đào tạo Phong thủy:</strong> Ứng dụng các quy luật năng lượng tự nhiên một cách khoa học để cải thiện không gian sống, kích hoạt tài lộc và hanh thông sự nghiệp.</li>
-        <li><strong>Định hình Phong cách sống:</strong> Hướng dẫn xây dựng lối sống tích cực, thanh lịch, kết nối sâu sắc với bản thân và thế giới xung quanh.</li>
-        <li><strong>Phát triển Tư duy Thành công:</strong> Chia sẻ những bài học, triết lý sống giá trị giúp khai phá tiềm năng, định hình tư duy đột phá cho cá nhân và doanh nghiệp.</li>
-    </ul>
-
-    <p>Với giao diện tinh tế, tối giản nhưng chứa đựng lượng thông tin sâu sắc, trang web là nơi lưu giữ hành trình cống hiến của <strong>Grand Master Thiên Uy</strong>. Đồng thời, đây cũng là cầu nối trực tiếp để người hữu duyên có thể liên hệ đặt lịch tư vấn, tham gia các khóa đào tạo hoặc cập nhật những bài viết chuyên môn mới nhất.</p>
-
-    <p>Chào mừng tất cả mọi người ghé thăm không gian số <a href="https://nhathohoanghuy.github.io/huangguohui/" target="_blank">Website Huang Guohui</a> để cùng mở ra những góc nhìn mới, đón nhận nguồn năng lượng hưng vượng và làm chủ vận mệnh của chính mình.</p>
-
-    <p>Sự đồng hành của mọi người trên hành trình này chính là động lực to lớn để chúng tôi tiếp tục lan tỏa những giá trị tốt đẹp cho cuộc sống!</p>
-
-    <p><em>Xin chân thành cảm ơn và trân trọng!</em></p>
-
-    <hr>
-
-    <div class="signature">
-        <p><strong>Trân trọng,</strong></p>
-        <h3>Luật gia. Hoàng Quốc Huy</h3>
-        <ul>
-            <li>Thừa tác viên được phong chức bởi Universal Life Church (USA)</li>
-            <li>Tiến sĩ Thần học danh dự của Universal Life Church (USA)</li>
-        </ul>
-    </div>
-
-    <hr>
-
-    <div class="info-contact">
-        <h4>Thông Tin Kết Nối Chính Thức:</h4>
-        <p><strong>Hotline/Zalo:</strong> 0908587869</p>
-        <p><strong>Hộp thư điện tử:</strong> <a href="mailto:lizquiehui@gmail.com">lizquiehui@gmail.com</a> | <a href="mailto:lizquiehui@protonmail.com">lizquiehui@protonmail.com</a></p>
-        <p><strong>Nền tảng số:</strong> <a href="https://nhathohoanghuy.github.io/huangguohui/" target="_blank">https://nhathohoanghuy.github.io/huangguohui/</a></p>
-        <p><strong>Kênh truyền thông:</strong> <a href="https://facebook.com" target="_blank">Fanpage Grand Master Thiên Uy</a></p>
-        <p><strong>Khu vực hoạt động:</strong> Việt Nam (Hải Phòng - Hồ Chí Minh) | Hoa Kỳ | Thái Lan | Singapore</p>
-    </div>
-
-</div>
-
-                <div class="post-image-container">
-                    <img class="post-image" src="https://picsum.photos/id/10/800/500" alt="Post Image">
-                </div>
-
-                <!-- Thêm thanh tương tác Thích / Bình luận / Chia sẻ đúng kiểu Facebook -->
-                <div class="post-actions">
-                    <button class="post-action-btn" onclick="toggleLike(this)">
-                        <i class="fa-regular fa-thumbs-up"></i> Thích
-                    </button>
-                    <button class="post-action-btn">
-                        <i class="fa-regular fa-comment"></i> Bình luận
-                    </button>
-                    <button class="post-action-btn">
-                        <i class="fa-regular fa-share-from-square"></i> Chia sẻ
-                    </button>
+                <!-- Nút Theo dõi đồng bộ thực tế thông qua Like Page Plugin của Facebook -->
+                <div class="fb-follow-plugin-box">
+                    <div class="fb-like" 
+                         data-href="https://facebook.com" 
+                         data-width="" 
+                         data-layout="button" 
+                         data-action="like" 
+                         data-size="large" 
+                         data-share="false">
+                    </div>
                 </div>
             </div>
         </div>
+
+        <!-- Thanh menu danh mục phụ -->
+        <ul class="page-menu">
+            <li class="active"><a href="#">Bài viết</a></li>
+            <li><a href="#">Giới thiệu</a></li>
+            <li><a href="#">Ảnh</a></li>
+            <li><a href="#">Video</a></li>
+        </ul>
     </div>
+    <!-- Layout cấu trúc thân trang -->
+    <div class="main-content">
+        
+        <!-- CỘT TRÁI: KHUNG THÔNG TIN GIỚI THIỆU -->
+        <div class="left-column">
+            <!-- Thêm nội dung card giới thiệu, liên hệ... -->
+        </div>
 
-    <!-- Script xử lý các nút tương tác động -->
-    <script>
-        function toggleFollow(btn) {
-            if (btn.classList.contains('followed')) {
-                btn.classList.remove('followed');
-                btn.innerHTML = '<i class="fa-solid fa-user-plus"></i> Theo dõi';
-                btn.style.backgroundColor = "var(--fb-button-secondary)";
-                btn.style.color = "#050505";
-            } else {
-                btn.classList.add('followed');
-                btn.innerHTML = '<i class="fa-solid fa-check"></i> Đã theo dõi';
-                btn.style.backgroundColor = "#e7f3ff";
-                btn.style.color = "var(--fb-blue)";
-            }
-        }
-
-        function toggleLike(btn) {
-            const icon = btn.querySelector('i');
-            if (btn.classList.contains('liked')) {
-                btn.classList.remove('liked');
-                icon.className = 'fa-regular fa-thumbs-up';
-                btn.style.color = 'var(--fb-text-secondary)';
-            } else {
-                btn.classList.add('liked');
-                icon.className = 'fa-solid fa-thumbs-up';
-                btn.style.color = 'var(--fb-blue)';
-            }
-        }
-    </script>
+        <!-- CỘT PHẢI: BÀI VIẾT VÀ HỆ THỐNG BÌNH LUẬN -->
+        <div class="right-column">
+            <div class="post-card">
+                <!-- Nội dung bài viết (Thư Ngỏ), Ảnh, FB Interactions... -->
+                <div class="fb-comments" data-href="https://github.io" data-width="100%" data-numposts="5"></div>
+            </div>
+            <!-- Chân trang -->
+        </div>
+    </div>
 </body>
-    <!-- CHÂN TRANG 3 CỘT SIÊU NHẸ -->
-<footer class="ft">
-  <div class="ft-in">
-    <!-- Cột 1 -->
-    <div class="ft-col">
-      <h3>Huang Guohui</h3>
-      <p>Định hình phong cách sống và tư duy thành công.</p>
-    </div>
-    <!-- Cột 2 -->
-    <div class="ft-col">
-      <h3>Liên Kết</h3>
-      <a href="#home">Trang Chủ</a><br>
-      <a href="#about">Giới Thiệu</a><br>
-      <a href="#contact">Liên Hệ</a>
-    </div>
-    <!-- Cột 3 -->
-    <div class="ft-col">
-      <h3>Liên Hệ</h3>
-      <p>Hồ Chí Minh, Việt Nam</p>
-      <p>masterthienuy.pro.vn</p>
-    </div>
-  </div>
-  <p class="ft-cp">&copy; 2026 Huang Guohui. By Nhathohoanghuy.</p>
-</footer>
-
-<style>
-  .ft { background: #111; color: #fff; padding: 30px 20px; font-family: sans-serif; font-size: 14px; }
-  .ft-in { max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 20px; }
-  .ft-col { flex: 1 1 250px; } /* Tự động chia 3 cột, tự xuống dòng trên điện thoại */
-  .ft h3 { color: #ffb74d; margin-bottom: 10px; font-size: 16px; }
-  .ft p { margin: 5px 0; color: #ccc; }
-  .ft a { color: #ccc; text-decoration: none; }
-  .ft a:hover { color: #ffb74d; }
-  .ft-cp { text-align: center; margin-top: 30px; padding-top: 15px; border-top: 1px solid #222; color: #777; }
-</style>
-
 </html>
