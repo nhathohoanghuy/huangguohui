@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grand Master Thiên Uy - Fanpage Home</title>
-    <!-- Sửa link CDN FontAwesome để hiển thị icon chính xác -->
-    <link rel="stylesheet" href="https://cloudflare.com">
+    <!-- Sửa link FontAwesome chuẩn để hiển thị icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         :root {
             --fb-blue: #1877f2;
@@ -142,7 +142,6 @@
 
         .btn-secondary:hover { background-color: var(--fb-button-secondary-hover); }
 
-        /* Khung sửa lỗi hiển thị nút Like của FB Plugin */
         .fb-follow-plugin-box {
             display: inline-block;
             height: 36px;
@@ -240,6 +239,12 @@
             margin-right: 10px;
         }
 
+        .post-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
         .post-author-info h4 {
             font-size: 15px;
             font-weight: 600;
@@ -272,17 +277,10 @@
             display: block;
         }
 
-        /* Khung chứa các plugin tương tác từ FB */
         .fb-interactions-area {
             border-top: 1px solid var(--fb-border);
             padding-top: 12px;
             margin-top: 16px;
-        }
-
-        .fb-like-row {
-            margin-bottom: 16px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid var(--fb-border);
         }
 
         /* Responsive di động */
@@ -301,20 +299,19 @@
     </style>
 </head>
 <body>
-    <!-- Cấu hình Facebook SDK kết nối hệ thống tương tác thực tế -->
+    <!-- Facebook SDK chính thức (Thay YOUR_APP_ID nếu cần) -->
     <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous" src="https://facebook.net"></script>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v18.0"></script>
 
-    <!-- Khung chính bố cục Facebook -->
     <div class="profile-container">
-        <!-- Ảnh bìa hệ thống -->
+        <!-- Ảnh bìa -->
         <div class="cover-photo"></div>
 
-        <!-- Thông tin Header Fanpage -->
+        <!-- Thông tin Header -->
         <div class="profile-header-info">
             <div class="avatar-container">
-                <!-- Thay link ảnh đại diện thực tế của bạn vào thuộc tính src -->
-                <img class="avatar-img" src="https://placeholder.com" alt="Grand Master Thiên Uy Avatar">
+                <!-- Thay bằng link ảnh thật của bạn -->
+                <img class="avatar-img" src="https://via.placeholder.com/168" alt="Grand Master Thiên Uy Avatar">
             </div>
             
             <div class="page-details">
@@ -325,29 +322,20 @@
                 <div class="page-likes">102K người thích • 150K người theo dõi</div>
             </div>
 
-            <!-- Khu vực các nút bấm hành động -->
+            <!-- Nút bấm -->
             <div class="action-buttons">
-                <!-- Nút nhắn tin cấu hình icon chữ F và trỏ link về Messenger Fanpage -->
-                <a href="https://m.me" class="btn btn-primary" target="_blank">
+                <a href="https://m.me/yourpage" class="btn btn-primary" target="_blank">
                     <i class="fab fa-facebook-messenger" style="font-size: 16px;"></i>
-                    Gửi tin nhắn Facebook
+                    Gửi tin nhắn
                 </a>
                 
-                <!-- Nút Theo dõi đồng bộ thực tế thông qua Like Page Plugin của Facebook -->
-                <div class="fb-follow-plugin-box">
-                    <div class="fb-like" 
-                         data-href="https://facebook.com" 
-                         data-width="" 
-                         data-layout="button" 
-                         data-action="like" 
-                         data-size="large" 
-                         data-share="false">
-                    </div>
-                </div>
+                <a href="#" class="btn btn-secondary">
+                    <i class="fas fa-thumbs-up"></i> Thích
+                </a>
             </div>
         </div>
 
-        <!-- Thanh menu danh mục phụ -->
+        <!-- Menu phụ -->
         <ul class="page-menu">
             <li class="active"><a href="#">Bài viết</a></li>
             <li><a href="#">Giới thiệu</a></li>
@@ -355,21 +343,59 @@
             <li><a href="#">Video</a></li>
         </ul>
     </div>
-    <!-- Layout cấu trúc thân trang -->
+
+    <!-- Thân trang -->
     <div class="main-content">
         
-        <!-- CỘT TRÁI: KHUNG THÔNG TIN GIỚI THIỆU -->
+        <!-- CỘT TRÁI: GIỚI THIỆU -->
         <div class="left-column">
-            <!-- Thêm nội dung card giới thiệu, liên hệ... -->
+            <div class="card">
+                <div class="card-title">Giới thiệu</div>
+                <ul class="intro-list">
+                    <li class="intro-item">
+                        <i class="fas fa-info-circle"></i>
+                        <span>Trang chính thức của Grand Master Thiên Uy.</span>
+                    </li>
+                    <li class="intro-item">
+                        <i class="fas fa-globe"></i>
+                        <a href="#" style="color: var(--fb-blue); text-decoration: none;">thienuy.vn</a>
+                    </li>
+                    <li class="intro-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+84 123 456 789</span>
+                    </li>
+                </ul>
+            </div>
         </div>
 
-        <!-- CỘT PHẢI: BÀI VIẾT VÀ HỆ THỐNG BÌNH LUẬN -->
+        <!-- CỘT PHẢI: BÀI VIẾT -->
         <div class="right-column">
             <div class="post-card">
-                <!-- Nội dung bài viết (Thư Ngỏ), Ảnh, FB Interactions... -->
-                <div class="fb-comments" data-href="https://github.io" data-width="100%" data-numposts="5"></div>
+                <div class="post-header">
+                    <div class="post-avatar">
+                        <img src="https://via.placeholder.com/40" alt="Avatar">
+                    </div>
+                    <div class="post-author-info">
+                        <h4>Grand Master Thiên Uy</h4>
+                        <div class="post-time">Vừa xong · <i class="fas fa-globe"></i></div>
+                    </div>
+                </div>
+                
+                <div class="post-content">
+                    Chào mừng mọi người đã ghé thăm Fanpage chính thức của tôi. 
+                    Hãy cùng đón chờ những nội dung chia sẻ giá trị sắp tới nhé!
+                </div>
+
+                <div class="post-image-container">
+                    <img class="post-image" src="https://via.placeholder.com/600x350" alt="Post Image">
+                </div>
+
+                <!-- Khung tương tác Facebook -->
+                <div class="fb-interactions-area">
+                    <!-- Plugin bình luận hoạt động khi chạy trên môi trường có domain live -->
+                    <div class="fb-comments" data-href="https://thienuy.vn/post-1" data-width="100%" data-numposts="5"></div>
+                </div>
             </div>
-            <!-- Chân trang -->
         </div>
     </div>
 </body>
