@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grand Master Thiên Uy - Fanpage Home</title>
-    <!-- Sửa link FontAwesome chuẩn để hiển thị icon -->
+    <title>Grand Master Thiên Uy - Fanpage Home & Website</title>
+    <!-- Thư viện Icon FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         :root {
@@ -31,7 +31,45 @@
             color: var(--fb-text-primary);
         }
 
-        /* Vùng Header & Bìa */
+        /* --- 1. WEBSITE HEADER --- */
+        .main-header {
+            background-color: #111;
+            color: #fff;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .nav-container {
+            max-width: 1095px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 16px;
+        }
+        .brand-logo {
+            font-weight: 700;
+            font-size: 20px;
+            letter-spacing: 1px;
+        }
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+        .nav-menu a {
+            color: #ccc;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+        .nav-menu a:hover, .nav-item.active a {
+            color: #fff;
+        }
+
+        /* --- 2. FACEBOOK FANPAGE ZONE --- */
         .profile-container {
             background: var(--fb-white);
             box-shadow: 0 1px 2px rgba(0,0,0,0.1);
@@ -51,7 +89,6 @@
             position: relative;
         }
 
-        /* Thông tin Page */
         .profile-header-info {
             padding: 0 32px 16px 32px;
             display: flex;
@@ -104,7 +141,6 @@
             margin-top: 4px;
         }
 
-        /* Nút hành động */
         .action-buttons {
             display: flex;
             align-items: center;
@@ -132,30 +168,19 @@
             background-color: var(--fb-blue);
             color: var(--fb-white);
         }
-
         .btn-primary:hover { background-color: var(--fb-blue-hover); }
 
         .btn-secondary {
             background-color: var(--fb-button-secondary);
             color: #050505;
         }
-
         .btn-secondary:hover { background-color: var(--fb-button-secondary-hover); }
 
-        .fb-follow-plugin-box {
-            display: inline-block;
-            height: 36px;
-            vertical-align: middle;
-            overflow: hidden;
-        }
-
-        /* Menu điều hướng */
         .page-menu {
             display: flex;
             list-style: none;
             padding: 4px 32px;
         }
-
         .page-menu li a {
             padding: 16px;
             color: var(--fb-text-secondary);
@@ -165,14 +190,13 @@
             display: block;
             border-bottom: 3px solid transparent;
         }
-
         .page-menu li.active a {
             color: var(--fb-blue);
             border-bottom-color: var(--fb-blue);
         }
 
-        /* Layout thân trang */
-        .main-content {
+        /* --- 3. MAIN CONTENTS LAYOUT (2 CỘT) --- */
+        .main-content, .main-wrapper {
             max-width: 1095px;
             margin: 16px auto;
             display: grid;
@@ -181,8 +205,7 @@
             padding: 0 16px;
         }
 
-        /* Cột trái: Giới thiệu */
-        .left-column .card {
+        .card {
             background: var(--fb-white);
             border-radius: 8px;
             padding: 16px;
@@ -199,24 +222,23 @@
         .intro-list {
             list-style: none;
         }
-
-        .intro-item {
+        .intro-item, .intro-link {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 12px;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
             font-size: 15px;
             color: #050505;
+            line-height: 1.4;
         }
-
-        .intro-item i {
+        .intro-item i, .intro-icon {
             color: var(--fb-text-secondary);
             width: 20px;
             text-align: center;
             font-size: 18px;
         }
 
-        /* Cột phải: Dòng thời gian bài viết */
+        /* Khung bài viết */
         .post-card {
             background: var(--fb-white);
             border-radius: 8px;
@@ -224,44 +246,50 @@
             box-shadow: 0 1px 2px rgba(0,0,0,0.1);
             margin-bottom: 16px;
         }
-
-        .post-header {
+        .post-header, .post-author {
             display: flex;
             align-items: center;
             margin-bottom: 12px;
         }
-
-        .post-avatar {
+        .post-avatar, .post-author-img {
             width: 40px;
             height: 40px;
             border-radius: 50%;
             overflow: hidden;
             margin-right: 10px;
+            background: #ccc;
         }
-
-        .post-avatar img {
+        .post-avatar img, .post-author-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-
-        .post-author-info h4 {
+        .post-author-info h4, .post-author-meta h2 {
             font-size: 15px;
             font-weight: 600;
         }
-
-        .post-time {
+        .post-author-meta h2 {
+            font-size: 18px;
+        }
+        .post-time, .post-author-meta span {
             font-size: 13px;
             color: var(--fb-text-secondary);
         }
-
-        .post-content {
+        .post-content, .post-body {
             font-size: 15px;
-            line-height: 1.4;
+            line-height: 1.5;
             margin-bottom: 12px;
-            white-space: pre-line;
         }
-
+        .post-body p {
+            margin-bottom: 12px;
+        }
+        .post-body ul {
+            padding-left: 20px;
+            margin-bottom: 12px;
+        }
+        .post-body li {
+            margin-bottom: 6px;
+        }
         .post-image-container {
             width: calc(100% + 32px);
             margin-left: -16px;
@@ -269,21 +297,72 @@
             overflow: hidden;
             background: var(--fb-bg);
         }
-
         .post-image {
             width: 100%;
             max-height: 500px;
             object-fit: cover;
             display: block;
         }
-
         .fb-interactions-area {
             border-top: 1px solid var(--fb-border);
             padding-top: 12px;
             margin-top: 16px;
         }
+        .post-footer-stats {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            color: var(--fb-text-secondary);
+            border-top: 1px solid var(--fb-border);
+            padding-top: 12px;
+            margin-top: 12px;
+        }
 
-        /* Responsive di động */
+        /* --- 4. WEBSITE FOOTER --- */
+        .main-footer {
+            background-color: #1c1e21;
+            color: #fff;
+            padding: 40px 16px 20px 16px;
+            margin-top: 40px;
+        }
+        .footer-container {
+            max-width: 1095px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+        .footer-col h3 {
+            font-size: 16px;
+            margin-bottom: 16px;
+            border-bottom: 2px solid #333;
+            padding-bottom: 8px;
+            color: var(--fb-blue);
+        }
+        .footer-col p, .footer-col li {
+            font-size: 14px;
+            color: #bcc0c4;
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+        .footer-col ul {
+            list-style: none;
+        }
+        .footer-col a {
+            color: var(--fb-blue);
+            text-decoration: none;
+        }
+        .footer-bottom {
+            max-width: 1095px;
+            margin: 30px auto 0 auto;
+            text-align: center;
+            font-size: 13px;
+            color: #8a8d91;
+            border-top: 1px solid #333;
+            padding-top: 20px;
+        }
+
+        /* Responsive Mobile */
         @media (max-width: 900px) {
             .profile-header-info {
                 flex-direction: column;
@@ -294,23 +373,39 @@
             .page-details { margin-left: 0; margin-top: 12px; }
             .page-name { justify-content: center; }
             .action-buttons { justify-content: center; width: 100%; flex-wrap: wrap; }
-            .main-content { grid-template-columns: 1fr; }
+            .main-content, .main-wrapper { grid-template-columns: 1fr; }
+            .nav-container { flex-direction: column; gap: 10px; }
+            .footer-container { grid-template-columns: 1fr; gap: 24px; }
         }
     </style>
 </head>
 <body>
-    <!-- Facebook SDK chính thức (Thay YOUR_APP_ID nếu cần) -->
+
+    <!-- SDK Facebook (Dành cho khung bình luận) -->
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v18.0"></script>
 
+    <!-- 1. THANH MENU CHÍNH CỦA WEBSITE -->
+    <header class="main-header">
+        <div class="nav-container">
+            <div class="brand-logo">HUANG GUOHUI</div>
+            <ul class="nav-menu">
+                <li class="nav-item active"><a href="#">Trang Chủ</a></li>
+                <li class="nav-item"><a href="https://github.io" target="_blank">Tiểu Sử</a></li>
+                <li class="nav-item"><a href="https://facebook.com" target="_blank">Tin Tức</a></li>
+                <li class="nav-item"><a href="mailto:lizquiehui@gmail.com">Liên Hệ</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- 2. GIAO DIỆN PHẦN GIẢ LẬP FANPAGE FACEBOOK -->
     <div class="profile-container">
         <!-- Ảnh bìa -->
         <div class="cover-photo"></div>
 
-        <!-- Thông tin Header -->
+        <!-- Thông tin chính của Page -->
         <div class="profile-header-info">
             <div class="avatar-container">
-                <!-- Thay bằng link ảnh thật của bạn -->
                 <img class="avatar-img" src="https://via.placeholder.com/168" alt="Grand Master Thiên Uy Avatar">
             </div>
             
@@ -322,20 +417,19 @@
                 <div class="page-likes">102K người thích • 150K người theo dõi</div>
             </div>
 
-            <!-- Nút bấm -->
+            <!-- Nút hành động -->
             <div class="action-buttons">
                 <a href="https://m.me/yourpage" class="btn btn-primary" target="_blank">
                     <i class="fab fa-facebook-messenger" style="font-size: 16px;"></i>
                     Gửi tin nhắn
                 </a>
-                
                 <a href="#" class="btn btn-secondary">
                     <i class="fas fa-thumbs-up"></i> Thích
                 </a>
             </div>
         </div>
 
-        <!-- Menu phụ -->
+        <!-- Menu phụ của Page -->
         <ul class="page-menu">
             <li class="active"><a href="#">Bài viết</a></li>
             <li><a href="#">Giới thiệu</a></li>
@@ -344,10 +438,9 @@
         </ul>
     </div>
 
-    <!-- Thân trang -->
+    <!-- KHU VỰC THÂN TRANG 1: HIỂN THỊ DẠNG FANPAGE -->
     <div class="main-content">
-        
-        <!-- CỘT TRÁI: GIỚI THIỆU -->
+        <!-- Cột trái: Giới thiệu chung -->
         <div class="left-column">
             <div class="card">
                 <div class="card-title">Giới thiệu</div>
@@ -368,7 +461,7 @@
             </div>
         </div>
 
-        <!-- CỘT PHẢI: BÀI VIẾT -->
+        <!-- Cột phải: Bài viết feed -->
         <div class="right-column">
             <div class="post-card">
                 <div class="post-header">
@@ -390,59 +483,20 @@
                     <img class="post-image" src="https://via.placeholder.com/600x350" alt="Post Image">
                 </div>
 
-                <!-- Khung tương tác Facebook -->
+                <!-- Khung tương tác bình luận Facebook -->
                 <div class="fb-interactions-area">
-                    <!-- Plugin bình luận hoạt động khi chạy trên môi trường có domain live -->
                     <div class="fb-comments" data-href="https://thienuy.vn/post-1" data-width="100%" data-numposts="5"></div>
                 </div>
             </div>
         </div>
     </div>
-</body>
-</html>
-    <!-- Website Main Menu -->
-    <header class="main-header">
-        <div class="nav-container">
-            <div class="brand-logo">HUANG GUOHUI</div>
-            <ul class="nav-menu">
-                <li class="nav-item active"><a href="#">Trang Chủ</a></li>
-                <li class="nav-item"><a href="https://github.io" target="_blank">Tiểu Sử</a></li>
-                <li class="nav-item"><a href="https://facebook.com" target="_blank">Tin Tức</a></li>
-                <li class="nav-item"><a href="mailto:lizquiehui@gmail.com">Liên Hệ</a></li>
-            </ul>
-        </div>
-    </header>
 
-    <!-- Khu vực Khung Ảnh cấu trúc giống Fanpage Facebook -->
-    <div class="fb-profile-block">
-        <div class="fb-profile-container">
-            <!-- 1. Ảnh lớn (Ảnh bìa trải rộng) -->
-            <div class="fb-cover-photo"></div>
-            
-            <!-- 2. Khung chứa Ảnh đại diện đè lên ảnh bìa và Tên thương hiệu -->
-            <div class="fb-profile-meta">
-                <div class="fb-avatar-box">
-                    <!-- Bạn chèn đường dẫn ảnh đại diện cá nhân vào đây -->
-                    <img src="https://placeholder.com" alt="Grand Master Thiên Uy">
-                </div>
-                <div class="fb-name-box">
-                    <div class="fb-user-name">
-                        Grand Master Thiên Uy 
-                        <span class="fb-verified-tick" title="Đã xác minh chính chủ">✓</span>
-                    </div>
-                    <div class="fb-user-subtitle">Luật gia · Tiến sĩ Thần học danh dự · Thừa tác viên (USA)</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Bố cục Thân trang 2 Cột dưới Khung ảnh -->
+    <!-- KHU VỰC THÂN TRANG 2: NỘI DUNG THƯ NGỎ WEBSITE -->
     <div class="main-wrapper">
-        
-        <!-- Cột trái: Khung thông tin cá nhân ngắn gọn -->
+        <!-- Cột trái: Hồ sơ chi tiết -->
         <aside class="left-col">
             <div class="card">
-                <div class="card-title">Giới thiệu</div>
+                <div class="card-title">Thông tin chi tiết</div>
                 <ul class="intro-list">
                     <li class="intro-link">
                         <span class="intro-icon">💼</span>
@@ -463,14 +517,15 @@
                 </ul>
             </div>
         </aside>
-        <!-- Cột phải: Khung nội dung Thư ngỏ -->
+
+        <!-- Cột phải: Chi tiết bức thư ngỏ -->
         <main class="right-col">
             <article class="card">
                 <div class="post-author">
-                    <img class="post-author-img" src="https://placeholder.com" alt="Avatar nhỏ">
+                    <img class="post-author-img" src="https://via.placeholder.com/40" alt="Avatar nhỏ">
                     <div class="post-author-meta">
                         <h2>Thư Ngỏ Từ Grand Master Thiên Uy - Huang Guohui</h2>
-                        <span>🌐 Bài viết hệ thống công khai</span>
+                        <span><i class="fas fa-globe"></i> Bài viết hệ thống công khai</span>
                     </div>
                 </div>
 
@@ -493,12 +548,12 @@
 
                     <p><em>Xin chân thành cảm ơn và trân trọng!</em></p>
                     
-                    <p style="margin-top: 30px; border-top: 1px dashed #e4e6eb; padding-top: 15px;">
+                    <div style="margin-top: 30px; border-top: 1px dashed #e4e6eb; padding-top: 15px;">
                         <strong>Trân trọng,</strong><br><br>
                         <span style="font-size: 17px; font-weight: 700; color: #111;">Luật gia. Hoàng Quốc Huy</span><br>
                         • Thừa tác viên được phong chức bởi Universal Life Church (USA)<br>
                         • Tiến sĩ Thần học danh dự của Universal Life Church (USA)
-                    </p>
+                    </div>
                 </div>
 
                 <div class="post-footer-stats">
@@ -507,10 +562,9 @@
                 </div>
             </article>
         </main>
+    </div> 
 
-    </div> <!-- Đóng main-wrapper -->
-
-    <!-- CHÂN TRANG WEBSITE CHIA LÀM 3 CỘT CHUYÊN NGHIỆP -->
+    <!-- 3. CHÂN TRANG (FOOTER) CHUYÊN NGHIỆP -->
     <footer class="main-footer">
         <div class="footer-container">
             <!-- Cột 1 -->
